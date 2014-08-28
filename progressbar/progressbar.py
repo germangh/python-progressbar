@@ -35,8 +35,8 @@ try:
 except ImportError:
     pass
 
-from compat import *  # for: any, next
-import widgets
+from .compat import *  # for: any, next
+from .widgets import Bar, Percentage, WidgetHFill, format_updatable
 
 
 class UnknownLength: pass
@@ -93,7 +93,7 @@ class ProgressBar(object):
 
     _DEFAULT_MAXVAL = 100
     _DEFAULT_TERMSIZE = 80
-    _DEFAULT_WIDGETS = [widgets.Percentage(), ' ', widgets.Bar()]
+    _DEFAULT_WIDGETS = [Percentage(), ' ', Bar()]
 
     def __init__(self, maxval=None, widgets=None, term_width=None, poll=1,
                  left_justify=True, fd=sys.stderr):
@@ -197,11 +197,11 @@ class ProgressBar(object):
         width = self.term_width
 
         for index, widget in enumerate(self.widgets):
-            if isinstance(widget, widgets.WidgetHFill):
+            if isinstance(widget, WidgetHFill):
                 result.append(widget)
                 expanding.insert(0, index)
             else:
-                widget = widgets.format_updatable(widget, self)
+                widget = format_updatable(widget, self)
                 result.append(widget)
                 width -= len(widget)
 
