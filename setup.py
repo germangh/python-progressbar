@@ -3,6 +3,15 @@
 import os
 from setuptools import setup, find_packages
 import progressbar
+import codecs
+
+# From: https://mail.python.org/pipermail/python-list/2012-February/620318.html
+try:
+    codecs.lookup('mbcs')
+except LookupError:
+    ascii = codecs.lookup('ascii')
+    func = lambda name, enc=ascii: {True: enc}.get(name=='mbcs')
+    codecs.register(func)
 
 # TODO: I don't believe this should be in here. This should be done on package
 #       creation only

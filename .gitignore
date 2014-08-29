@@ -2,3 +2,5 @@ __pycache__
 .ropeproject
 *.pyc
 progressbar33.egg-info
+build/
+dist/
