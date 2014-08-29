@@ -17,9 +17,10 @@ try:
 except: pass
 
 setup(
-    name='progressbar',
+    name='progressbar33',
     version=progressbar.__version__,
     packages=find_packages(),
+
 
     description=progressbar.__doc__.split('\n')[0],
     long_description=progressbar.__doc__,
