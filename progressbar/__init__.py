@@ -41,8 +41,8 @@ automatically enable features like auto-resizing when the system supports it.
 
 __author__ = 'Nilton Volpato'
 __author_email__ = 'first-name dot last-name @ gmail.com'
-__date__ = '2011-05-14'
-__version__ = '2.3'
+__date__ = '2014-08-29'
+__version__ = '2.4'
 
 from .compat import *
 from .widgets import *

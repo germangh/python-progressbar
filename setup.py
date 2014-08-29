@@ -29,7 +29,7 @@ setup(
     author_email=progressbar.__author_email__,
     maintainer_email=progressbar.__author_email__,
 
-    url='http://code.google.com/p/python-progressbar',
+    url='http://github.com/germangh/python-progressbar',
     license='LICENSE.txt',
     classifiers=[
         'Development Status :: 5 - Production/Stable',
@@ -48,6 +48,7 @@ setup(
         'Programming Language :: Python :: 2.6',
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.3',
         'Topic :: Software Development :: Libraries',
         'Topic :: Software Development :: User Interfaces',
         'Topic :: Terminals'
