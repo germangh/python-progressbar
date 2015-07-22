@@ -12,7 +12,7 @@ work under Python 3.3.
 
 ## Installation
 
-The module is available from [PiPI](https://pypi.python.org/pypi/progressbar33/2.4) 
+The module is available from [PyPI](https://pypi.python.org/pypi/progressbar33/2.4) 
 so you just need to run:
 
 ````
