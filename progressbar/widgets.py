@@ -377,8 +377,8 @@ class LabeledBar(WidgetHFill):
         fill  - character to pad with.
         show_percentage - whether to display percentage indicator.
         show_count - whether to show "x/y" progress indicator.
-        reverse - ANSI color to use for complete.
-        normal - ANSI color to use for remainder.
+        done_color - ANSI color to use for complete.
+        todo_color - ANSI color to use for remainder.
         """
         self.text = text
         self.left = left
