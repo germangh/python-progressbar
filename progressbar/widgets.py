@@ -367,7 +367,7 @@ class LabeledBar(WidgetHFill):
     )
 
     def __init__(self, text, left='|', right='|', fill=' ', align='left',
-                 show_percentage=True, show_count=True,
+                 show_percentage=False, show_count=False,
                  todo_color="\033[0;0m", done_color="\033[;7m"):
         """Creates a customizable progress bar.
         text  - string to display in Bar.
