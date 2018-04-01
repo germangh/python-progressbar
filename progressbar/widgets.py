@@ -354,3 +354,68 @@ class BouncingBar(Bar):
         if not self.fill_left: rpad, lpad = lpad, rpad
 
         return '%s%s%s%s%s' % (left, lpad, marker, rpad, right)
+
+
+class LabeledBar(WidgetHFill):
+    """A progress bar which displays specified text in the background."""
+
+    TIME_SENSITIVE = True
+
+    __slots__ = (
+        'text', 'fill', 'left', 'right', 'align'
+        'show_percentage', 'show_count', 'done_color', 'todo_color'
+    )
+
+    def __init__(self, text, left='|', right='|', fill=' ', align='left',
+                 show_percentage=False, show_count=False,
+                 todo_color="\033[0;0m", done_color="\033[;7m"):
+        """Creates a customizable progress bar.
+        text  - string to display in Bar.
+        left  - string or updatable object to use as a left border.
+        right - string or updatable object to use as a right border.
+        align - one of 'left', 'right', 'center'.
+        fill  - character to pad with.
+        show_percentage - whether to display percentage indicator.
+        show_count - whether to show "x/y" progress indicator.
+        done_color - ANSI color to use for complete.
+        todo_color - ANSI color to use for remainder.
+        """
+        self.text = text
+        self.left = left
+        self.right = right
+        self.fill = fill
+        self.show_percentage = show_percentage
+        self.show_count = show_count
+        self.align = {
+            'left': 'ljust',
+            'right': 'rjust',
+            'center': 'center'
+        }.get(align, 'ljust')
+        self.todo_color = todo_color
+        self.done_color = done_color
+
+    def update(self, pbar, width):
+        """Updates the progress bar and its subcomponents."""
+
+        left, marked, right = (
+            format_updatable(i, pbar)
+            for i in (self.left, self.text, self.right)
+        )
+
+        width -= len(left) + len(right)
+        percentage = pbar.currval / pbar.maxval
+        position = int(percentage * width)
+
+        items = ['']
+        if self.show_count:
+            items.append("%03d/%03d" % (pbar.currval, pbar.maxval))
+        if self.show_percentage:
+            items.append("% 3.0f%%" % (percentage * 100))
+        items.append(self.text)
+
+        text = getattr(' '.join(items), self.align)(width, self.fill)
+        marked = text[:position] if pbar.maxval else ''
+        unmarked = text[position:width]
+        bar = self.done_color + marked + self.todo_color + unmarked
+
+        return '%s%s%s' % (left, bar, right)
